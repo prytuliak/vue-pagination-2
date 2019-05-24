@@ -69,7 +69,7 @@
 
 <script>
 
-import RenderlessPagination from './RenderlessPagination.js';
+import RenderlessPagination from 'vue-pagination-2/compiled/RenderlessPagination.js';
 
 export default {
     props:{
