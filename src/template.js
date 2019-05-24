@@ -9,7 +9,7 @@ module.exports = function() {
     var firstPage = '';
     var lastPage = '';
     
-    if (this.opts.edgeNavigation && this.totalChunks > 1) {
+    if (this.opts.edgeNavigation && this.totalChunks >= 1) {
       firstPage = <li class={`VuePagination__pagination-item ${theme.item} ${this.page===1?theme.disabled:''} VuePagination__pagination-item-prev-chunk`}>
       <a class={theme.link} 
       href="javascript:void(0);"
