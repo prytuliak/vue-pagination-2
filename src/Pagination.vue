@@ -28,6 +28,10 @@
         <nav :class='theme.nav'>
       
         <ul v-show="showPagination" :class="theme.list">
+
+            <li :class="theme.prev" @click="setPrevPage">
+                <a v-bind="{...aProps,...prevProps}">{{texts.prevPage}}</a>
+            </li>
         
             <li v-if="hasEdgeNav" :class='theme.firstPage' @click="setFirstPage">
                 <a v-bind="{...aProps,...firstPageProps}">{{texts.first}}</a>
@@ -37,16 +41,8 @@
                 <a v-bind="{...aProps, ...prevChunkProps}">{{texts.prevChunk}}</a>
             </li>
         
-            <li :class="theme.prev" @click="setPrevPage">
-                <a v-bind="{...aProps,...prevProps}">{{texts.prevPage}}</a>
-            </li>
-            
             <li v-for="page in pages" :key="page" :class="pageClasses(page)" v-on="pageEvents(page)">
                 <a v-bind="aProps" :class="theme.link">{{page}}</a>
-            </li>
-
-            <li :class="theme.next" @click="setNextPage">
-                <a v-bind="{...aProps, ...nextProps}">{{texts.nextPage}}</a>
             </li>
 
             <li v-if="hasChunksNav" :class='theme.nextChunk' @click="setNextChunk">
@@ -55,6 +51,10 @@
 
             <li v-if="hasEdgeNav" :class="theme.lastPage" @click="setLastPage">
                 <a v-bind="{...aProps, ...lastPageProps}">{{texts.last}}</a>
+            </li>
+
+              <li :class="theme.next" @click="setNextPage">
+                <a v-bind="{...aProps, ...nextProps}">{{texts.nextPage}}</a>
             </li>
 
         </ul>
