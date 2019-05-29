@@ -118,7 +118,7 @@ module.exports = function () {
             }],
 
             'class': theme.list + ' VuePagination__pagination' },
-          [prevChunk, firstPage, h(
+          [prevChunk, h(
             'li',
             { 'class': 'VuePagination__pagination-item ' + theme.item + ' ' + theme.prev + ' VuePagination__pagination-item-prev-page ' + this.allowedPageClass(this.page - 1) },
             [h(
@@ -133,7 +133,7 @@ module.exports = function () {
               },
               ['<']
             )]
-          ), items, h(
+          ), firstPage, items, lastPage, h(
             'li',
             { 'class': 'VuePagination__pagination-item ' + theme.item + ' ' + theme.next + ' VuePagination__pagination-item-next-page ' + this.allowedPageClass(this.page + 1) },
             [h(
@@ -148,7 +148,7 @@ module.exports = function () {
               },
               ['>']
             )]
-          ), lastPage, nextChunk]
+          ), nextChunk]
         ), h(
           'p',
           {
