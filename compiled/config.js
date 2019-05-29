@@ -13,8 +13,8 @@ exports.default = function () {
         theme: 'bootstrap3',
         texts: {
             count: 'Showing {from} to {to} of {count} records|{count} records|One record',
-            first: 'First',
-            last: 'Last'
+            first: '<<',
+            last: '>>'
         }
     };
 };
