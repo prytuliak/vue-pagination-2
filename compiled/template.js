@@ -10,9 +10,8 @@ module.exports = function () {
     var nextChunk = '';
     var firstPage = '';
     var lastPage = '';
-    
+
     if (this.opts.edgeNavigation && this.totalChunks >= 1) {
-      
       firstPage = h(
         'li',
         { 'class': 'VuePagination__pagination-item ' + theme.item + ' ' + (this.page === 1 ? theme.disabled : '') + ' VuePagination__pagination-item-prev-chunk' },
@@ -84,232 +83,26 @@ module.exports = function () {
         )]
       );
     }
-    if (this.totalPages <= 10) {
-      for (var i = 1; i <= this.totalPages; i++) {
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' + theme.item + ' ' + this.activeClass(i) },
-          [h(
-            'a',
-            {
-              'class': theme.link + ' ' + this.activeClass(i),
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              },
-              on: {
-                'click': this.setPage.bind(this, i)
-              }
-            },
-            [i]
-          )]
-        ));
-      }
-    }
-    if (this.totalPages > 10) {
-      if (this.page < 7) {
-        for (var i = 1; i <= 8; i++) {
-          items.push(h(
-            'li',
-            { 'class': 'VuePagination__pagination-item ' + theme.item + ' ' + this.activeClass(i) },
-            [h(
-              'a',
-              {
-                'class': theme.link + ' ' + this.activeClass(i),
-                attrs: {
-                  href: 'javascript:void(0)',
-                  role: 'button'
-                },
-                on: {
-                  'click': this.setPage.bind(this, i)
-                }
-              },
-              [i]
-            )]
-          ));
-        }
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              }
-            },
-            ['...']
-          )]
-        ));
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' + theme.item },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              },
-              on: {
-                'click': this.setPage.bind(this, this.totalPages)
-              }
-            },
-            [this.totalPages]
-          )]
-        ));
 
-      }
-      if (this.page >= 7 && this.page <= this.totalPages - 6) {
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' + theme.item },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              },
-              on: {
-                'click': this.setPage.bind(this, this.firstPage)
-              }
+    this.pages.map(function (page) {
+      items.push(h(
+        'li',
+        { 'class': 'VuePagination__pagination-item ' + theme.item + ' ' + this.activeClass(page) },
+        [h(
+          'a',
+          { 'class': theme.link + ' ' + this.activeClass(page),
+            attrs: { href: 'javascript:void(0)',
+              role: 'button'
             },
-            [this.firstPage]
-          )]
-        ));
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              }
-            },
-            ['...']
-          )]
-        ));
+            on: {
+              'click': this.setPage.bind(this, page)
+            }
+          },
+          [page]
+        )]
+      ));
+    }.bind(this));
 
-        for (var i = this.page - 2; i <= this.page + 2; i++) {
-          items.push(h(
-            'li',
-            { 'class': 'VuePagination__pagination-item ' + theme.item + ' ' + this.activeClass(i) },
-            [h(
-              'a',
-              {
-                'class': theme.link + ' ' + this.activeClass(i),
-                attrs: {
-                  href: 'javascript:void(0)',
-                  role: 'button'
-                },
-                on: {
-                  'click': this.setPage.bind(this, i)
-                }
-              },
-              [i]
-            )]
-          ));
-        }
-
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              }
-            },
-            ['...']
-          )]
-        ));
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' + theme.item },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              },
-              on: {
-                'click': this.setPage.bind(this, this.totalPages)
-              }
-            },
-            [this.totalPages]
-          )]
-        ));
-      }
-      if (this.page > this.totalPages - 6) {
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' + theme.item },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              },
-              on: {
-                'click': this.setPage.bind(this, this.firstPage)
-              }
-            },
-            [this.firstPage]
-          )]
-        ));
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              }
-            },
-            ['...']
-          )]
-        ));
-        for (var i = this.totalPages - 7; i <= this.totalPages; i++) {
-          items.push(h(
-            'li',
-            { 'class': 'VuePagination__pagination-item ' + theme.item + ' ' + this.activeClass(i) },
-            [h(
-              'a',
-              {
-                'class': theme.link + ' ' + this.activeClass(i),
-                attrs: {
-                  href: 'javascript:void(0)',
-                  role: 'button'
-                },
-                on: {
-                  'click': this.setPage.bind(this, i)
-                }
-              },
-              [i]
-            )]
-          ));
-        }
-      }
-    }
-    
     return h(
       'div',
       { 'class': 'VuePagination ' + theme.wrapper },
@@ -325,7 +118,7 @@ module.exports = function () {
             }],
 
             'class': theme.list + ' VuePagination__pagination' },
-          [firstPage, prevChunk, h(
+          [prevChunk, firstPage, h(
             'li',
             { 'class': 'VuePagination__pagination-item ' + theme.item + ' ' + theme.prev + ' VuePagination__pagination-item-prev-page ' + this.allowedPageClass(this.page - 1) },
             [h(
@@ -355,7 +148,7 @@ module.exports = function () {
               },
               ['>']
             )]
-          ), nextChunk, lastPage]
+          ), lastPage, nextChunk]
         ), h(
           'p',
           {
