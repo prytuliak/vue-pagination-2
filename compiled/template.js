@@ -62,7 +62,7 @@ module.exports = function () {
               'click': this.setChunk.bind(this, -1)
             }
           },
-          ['<<']
+          [h('i', { 'class': 'fas fa-angle-double-left' })]
         )]
       );
 
@@ -79,235 +79,30 @@ module.exports = function () {
               'click': this.setChunk.bind(this, 1)
             }
           },
-          ['>>']
+          [h('i', { 'class': 'fas fa-angle-double-right' })]
         )]
       );
     }
-    if (this.totalPages <= 10) {
-      for (var i = 1; i <= this.totalPages; i++) {
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' + theme.item + ' ' + this.activeClass(i) },
-          [h(
-            'a',
-            {
-              'class': theme.link + ' ' + this.activeClass(i),
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              },
-              on: {
-                'click': this.setPage.bind(this, i)
-              }
-            },
-            [i]
-          )]
-        ));
-      }
-    }
-    if (this.totalPages > 10) {
-      if (this.page < 7) {
-        for (var i = 1; i <= 8; i++) {
-          items.push(h(
-            'li',
-            { 'class': 'VuePagination__pagination-item ' + theme.item + ' ' + this.activeClass(i) },
-            [h(
-              'a',
-              {
-                'class': theme.link + ' ' + this.activeClass(i),
-                attrs: {
-                  href: 'javascript:void(0)',
-                  role: 'button'
-                },
-                on: {
-                  'click': this.setPage.bind(this, i)
-                }
-              },
-              [i]
-            )]
-          ));
-        }
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              }
-            },
-            ['...']
-          )]
-        ));
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' + theme.item },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              },
-              on: {
-                'click': this.setPage.bind(this, this.totalPages)
-              }
-            },
-            [this.totalPages]
-          )]
-        ));
 
-      }
-      if (this.page >= 7 && this.page <= this.totalPages - 6) {
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' + theme.item },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              },
-              on: {
-                'click': this.setPage.bind(this, this.firstPage)
-              }
+    this.pages.map(function (page) {
+      items.push(h(
+        'li',
+        { 'class': 'VuePagination__pagination-item ' + theme.item + ' ' + this.activeClass(page) },
+        [h(
+          'a',
+          { 'class': theme.link + ' ' + this.activeClass(page),
+            attrs: { href: 'javascript:void(0)',
+              role: 'button'
             },
-            [this.firstPage]
-          )]
-        ));
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              }
-            },
-            ['...']
-          )]
-        ));
+            on: {
+              'click': this.setPage.bind(this, page)
+            }
+          },
+          [page]
+        )]
+      ));
+    }.bind(this));
 
-        for (var i = this.page - 2; i <= this.page + 2; i++) {
-          items.push(h(
-            'li',
-            { 'class': 'VuePagination__pagination-item ' + theme.item + ' ' + this.activeClass(i) },
-            [h(
-              'a',
-              {
-                'class': theme.link + ' ' + this.activeClass(i),
-                attrs: {
-                  href: 'javascript:void(0)',
-                  role: 'button'
-                },
-                on: {
-                  'click': this.setPage.bind(this, i)
-                }
-              },
-              [i]
-            )]
-          ));
-        }
-
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              }
-            },
-            ['...']
-          )]
-        ));
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' + theme.item },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              },
-              on: {
-                'click': this.setPage.bind(this, this.totalPages)
-              }
-            },
-            [this.totalPages]
-          )]
-        ));
-      }
-      if (this.page > this.totalPages - 6) {
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' + theme.item },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              },
-              on: {
-                'click': this.setPage.bind(this, this.firstPage)
-              }
-            },
-            [this.firstPage]
-          )]
-        ));
-        items.push(h(
-          'li',
-          { 'class': 'VuePagination__pagination-item ' },
-          [h(
-            'a',
-            {
-              'class': theme.link,
-              attrs: {
-                href: 'javascript:void(0)',
-                role: 'button'
-              }
-            },
-            ['...']
-          )]
-        ));
-        for (var i = this.totalPages - 7; i <= this.totalPages; i++) {
-          items.push(h(
-            'li',
-            { 'class': 'VuePagination__pagination-item ' + theme.item + ' ' + this.activeClass(i) },
-            [h(
-              'a',
-              {
-                'class': theme.link + ' ' + this.activeClass(i),
-                attrs: {
-                  href: 'javascript:void(0)',
-                  role: 'button'
-                },
-                on: {
-                  'click': this.setPage.bind(this, i)
-                }
-              },
-              [i]
-            )]
-          ));
-        }
-      }
-    }
     return h(
       'div',
       { 'class': 'VuePagination ' + theme.wrapper },
