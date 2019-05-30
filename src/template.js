@@ -31,14 +31,14 @@ module.exports = function() {
       <a class={theme.link} 
       href="javascript:void(0);"
       disabled={!!this.allowedChunkClass(-1)} 
-      on-click={this.setChunk.bind(this,-1)}>&lt;&lt;</a>
+      on-click={this.setChunk.bind(this,-1)}><i class="fas fa-angle-double-left"></i></a>
       </li>
       
       nextChunk = <li class={`VuePagination__pagination-item ${theme.item} ${theme.next} VuePagination__pagination-item-next-chunk ${this.allowedChunkClass(1)}`}>
       <a class={theme.link} 
       href="javascript:void(0);"
       disabled={!!this.allowedChunkClass(1)}
-      on-click={this.setChunk.bind(this,1)}>&gt;&gt;</a>
+      on-click={this.setChunk.bind(this,1)}><i class="fas fa-angle-double-right"></i></a>
       </li>;
       
     }
