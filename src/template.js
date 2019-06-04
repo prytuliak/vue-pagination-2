@@ -57,7 +57,7 @@ module.exports = function() {
     return <div class={`VuePagination ${theme.wrapper}`}><nav class={`${theme.nav}`}>
     <ul v-show={this.totalPages>1}
     class={`${theme.list} VuePagination__pagination`}>
-    {prevChunk} 
+    {/* {prevChunk}  */}
     
     <li class={`VuePagination__pagination-item ${theme.item} ${theme.prev} VuePagination__pagination-item-prev-page ${this.allowedPageClass(this.page-1)}`}>
     <a class={theme.link} 
@@ -66,7 +66,9 @@ module.exports = function() {
     on-click={this.prev.bind(this)}>&lt;</a>
     </li>
     {firstPage}
+    {prevChunk} 
     {items}
+    {nextChunk}
     {lastPage}
     <li class={`VuePagination__pagination-item ${theme.item} ${theme.next} VuePagination__pagination-item-next-page ${this.allowedPageClass(this.page+1)}`}>
     <a class={theme.link} 
@@ -74,7 +76,7 @@ module.exports = function() {
     disabled={!!this.allowedPageClass(this.page+1)} 
     on-click={this.next.bind(this)}>&gt;</a>
     </li>
-    {nextChunk}
+    {/* {nextChunk} */}
     </ul>
     <p v-show={parseInt(this.records)}
     class={`VuePagination__count ${theme.count}`}>{this.count}</p>
