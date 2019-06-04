@@ -252,7 +252,7 @@ module.exports = function () {
           )]
         ));
       }
-      if (this.page > this.totalPages - 6) {
+      if (this.page > this.totalPages - 5) {
         items.push(h(
           'li',
           { 'class': 'VuePagination__pagination-item ' + theme.item },
