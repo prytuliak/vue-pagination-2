@@ -9,12 +9,12 @@ exports.default = function () {
         format: true,
         chunk: 10,
         chunksNavigation: 'fixed',
-        edgeNavigation: false,
+        edgeNavigation: true,
         theme: 'bootstrap3',
         texts: {
             count: 'Showing {from} to {to} of {count} records|{count} records|One record',
-            first: '<<',
-            last: '>>'
+            first: 'First',
+            last: 'Last'
         }
     };
 };
